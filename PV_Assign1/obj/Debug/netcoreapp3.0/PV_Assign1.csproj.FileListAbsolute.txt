@@ -1,0 +1,11 @@
+D:\OneDrive - Douglas College\Courses\1175 - Intro to programming\Projects\PV_Assign1\PV_Assign1\bin\Debug\netcoreapp3.0\PV_Assign1.exe
+D:\OneDrive - Douglas College\Courses\1175 - Intro to programming\Projects\PV_Assign1\PV_Assign1\bin\Debug\netcoreapp3.0\PV_Assign1.deps.json
+D:\OneDrive - Douglas College\Courses\1175 - Intro to programming\Projects\PV_Assign1\PV_Assign1\bin\Debug\netcoreapp3.0\PV_Assign1.runtimeconfig.json
+D:\OneDrive - Douglas College\Courses\1175 - Intro to programming\Projects\PV_Assign1\PV_Assign1\bin\Debug\netcoreapp3.0\PV_Assign1.runtimeconfig.dev.json
+D:\OneDrive - Douglas College\Courses\1175 - Intro to programming\Projects\PV_Assign1\PV_Assign1\bin\Debug\netcoreapp3.0\PV_Assign1.dll
+D:\OneDrive - Douglas College\Courses\1175 - Intro to programming\Projects\PV_Assign1\PV_Assign1\bin\Debug\netcoreapp3.0\PV_Assign1.pdb
+D:\OneDrive - Douglas College\Courses\1175 - Intro to programming\Projects\PV_Assign1\PV_Assign1\obj\Debug\netcoreapp3.0\PV_Assign1.csprojAssemblyReference.cache
+D:\OneDrive - Douglas College\Courses\1175 - Intro to programming\Projects\PV_Assign1\PV_Assign1\obj\Debug\netcoreapp3.0\PV_Assign1.AssemblyInfoInputs.cache
+D:\OneDrive - Douglas College\Courses\1175 - Intro to programming\Projects\PV_Assign1\PV_Assign1\obj\Debug\netcoreapp3.0\PV_Assign1.AssemblyInfo.cs
+D:\OneDrive - Douglas College\Courses\1175 - Intro to programming\Projects\PV_Assign1\PV_Assign1\obj\Debug\netcoreapp3.0\PV_Assign1.dll
+D:\OneDrive - Douglas College\Courses\1175 - Intro to programming\Projects\PV_Assign1\PV_Assign1\obj\Debug\netcoreapp3.0\PV_Assign1.pdb

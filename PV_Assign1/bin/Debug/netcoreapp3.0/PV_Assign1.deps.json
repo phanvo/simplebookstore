@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.0": {
+      "PV_Assign1/1.0.0": {
+        "runtime": {
+          "PV_Assign1.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "PV_Assign1/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
