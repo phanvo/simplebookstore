@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using static System.Console;
 
 namespace PV_Assign1
@@ -8,7 +7,18 @@ namespace PV_Assign1
     {
         private static void LoadBookCount(Book anyBook)
         {
-            
+            bool isValid = false;
+            int result = 0;
+            while(!isValid)
+            {
+                Write("Enter the book count for {0}: ", anyBook.BookTitle);
+                isValid = int.TryParse(ReadLine(), out result);
+                if (isValid && result < 0)
+                    isValid = false;
+                if (!isValid)
+                    WriteLine("Input error. Only integer input is allowed and that must be non-negative!");
+            }
+            anyBook.BookCount = result;
         }
 
         static void Main(string[] args)
@@ -22,7 +32,8 @@ namespace PV_Assign1
 
             foreach (var item in bookList)
             {
-                WriteLine(item.ToString());
+                LoadBookCount(item);
+                //WriteLine(item.ToString());
             }
 
         }
