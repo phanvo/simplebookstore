@@ -27,12 +27,13 @@ namespace PV_Assign1
             bool isValid = false;
             int userInput = -1;
             int[] options = new int[] { 1, 2, 3 };
-            bool checkContinue = true;
+            //bool checkContinue = true;
 
-            while (checkContinue)
-            {
-                while (!isValid || checkContinue == true)
-                {
+            //while (checkContinue)
+            //{
+                //while (!isValid || checkContinue == true)
+                while (!isValid)
+                    {
                     Write("Enter the input option: ");
                     isValid = int.TryParse(ReadLine(), out userInput);
                     if(!isValid)
@@ -52,21 +53,43 @@ namespace PV_Assign1
                 {
                     case 1:
                         WriteLine("Case 1");
-                        checkContinue = true;
+                        //checkContinue = true;
                         //ViewOrder(book1, book2, book3);
                         break;
                     case 2:
                         WriteLine("Case 2");
-                        checkContinue = true;
+                        //checkContinue = true;
                         //UpdateOrder(book1, book2, book3);
                         break;
                     case 3:
                         Clear();
                         WriteLine("Thank you for placing an order with us. Good Bye!");
-                        checkContinue = false;
+                        //checkContinue = false;
                         break;
                 }
-            }
+            //}
+        }
+
+        static void ViewOrder(Book book1, Book book2, Book book3)
+        {
+            WriteLine("\nOkay! Lets view your order!\n");
+            string asteriskLine = new string('*', 100);
+            WriteLine(asteriskLine);
+            WriteLine(book1.ToString());
+            WriteLine(book2.ToString());
+            WriteLine(book3.ToString());
+
+            //PerformUserAction(book1, book2, book3);
+        }
+
+        static double GetOrderTotals(Book book1, Book book2, Book book3,
+                                   out double totalBeforeTaxAndDiscount,
+                                   out double taxes, out double discountAmount)
+        {
+            totalBeforeTaxAndDiscount = 0;
+            taxes = 0;
+            discountAmount = 0;
+            return 0;
         }
 
         static void Main(string[] args)
@@ -84,7 +107,8 @@ namespace PV_Assign1
                 //WriteLine(item.ToString());
             }
 
-            PerformUserAction(bookList[0], bookList[1], bookList[2]);
+            //PerformUserAction(bookList[0], bookList[1], bookList[2]);
+            ViewOrder(bookList[0], bookList[1], bookList[2]);
         }
     }
 }
