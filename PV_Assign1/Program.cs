@@ -72,12 +72,27 @@ namespace PV_Assign1
 
         static void ViewOrder(Book book1, Book book2, Book book3)
         {
-            WriteLine("\nOkay! Lets view your order!\n");
             string asteriskLine = new string('*', 100);
+            WriteLine("\nOkay! Lets view your order!\n");
             WriteLine(asteriskLine);
             WriteLine(book1.ToString());
             WriteLine(book2.ToString());
             WriteLine(book3.ToString());
+
+            double totalAfterTaxAndDiscount = GetOrderTotals(book1, book2, book3, out double totalBeforeTaxAndDiscount,
+                                   out double taxes, out double discountAmount);
+
+            string billCalculationStr = "*{0, 46}: {1, -50:C2}*\n";
+            billCalculationStr += "*{2, 46}: {3, -50:C2}*\n";
+            billCalculationStr += "*{4, 46}: {5, -50:C2}*\n";
+            billCalculationStr += "*{6, 46}: {7, -50:C2}*\n";
+
+            WriteLine(billCalculationStr, "Total before tax and discount", totalBeforeTaxAndDiscount,
+                                          "Taxes", taxes,
+                                          "Discount", discountAmount,
+                                          "Total after tax and discount", totalAfterTaxAndDiscount);
+            WriteLine(asteriskLine);
+
 
             //PerformUserAction(book1, book2, book3);
         }
@@ -86,19 +101,30 @@ namespace PV_Assign1
                                    out double totalBeforeTaxAndDiscount,
                                    out double taxes, out double discountAmount)
         {
-            totalBeforeTaxAndDiscount = 0;
-            taxes = 0;
-            discountAmount = 0;
-            return 0;
+            totalBeforeTaxAndDiscount = book1.BookSubTotal + book2.BookSubTotal + book3.BookSubTotal;
+            taxes = totalBeforeTaxAndDiscount * 0.07;
+            discountAmount = totalBeforeTaxAndDiscount > 300 ? totalBeforeTaxAndDiscount * 0.1 : 0;
+            double totalAfterTaxAndDiscount = totalBeforeTaxAndDiscount + taxes - discountAmount;
+            return totalAfterTaxAndDiscount;
+        }
+
+        static void UpdateOrder(Book book1, Book book2, Book book3)
+        {
+
+
+            //PerformUserAction(book1, book2, book3);
         }
 
         static void Main(string[] args)
         {
             Book[] bookList = new Book[] 
             {
-                new Book("title A", 17.3),
-                new Book("title B", 25.8),
-                new Book("title C", 39.4)
+                //new Book("title A", 17.3),
+                //new Book("title B", 25.8),
+                //new Book("title C", 39.4)
+                new Book("title A", 9.99),
+                new Book("title B", 14.99),
+                new Book("title C", 17.99)
             };
 
             foreach (var item in bookList)
