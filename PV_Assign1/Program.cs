@@ -1,76 +1,74 @@
 ﻿using System;
-using System.Linq;          // add this to use linq Contains() method
+using System.Linq;          // add this to use linq Contains() method in Array
 using static System.Console;
 
 namespace PV_Assign1
 {
     class Program
     {
+        static void ValidateUserInput(string infoStr, out int userInput, int[] options = null)
+        {
+            userInput = -1;
+            bool isValid = false;
+            while (!isValid)
+            {
+                Write(infoStr);
+                isValid = int.TryParse(ReadLine(), out userInput);
+
+                if (isValid)
+                {
+                    if (options != null && !options.Contains(userInput))
+                    {
+                        WriteLine("--- Input error. Only input {0} is allowed! ---", String.Join(", ", options));
+                        isValid = false;
+                    } 
+                    else if (userInput < 0)
+                    {
+                        WriteLine("--- Input error. Only non-negative integer input is allowed! ---");
+                        isValid = false;
+                    }
+                }
+                else
+                {
+                    WriteLine("--- Input error. Only integer input is allowed! ---");
+                }
+            }
+        }
+
         static void LoadBookCount(Book anyBook)
         {
-            bool isValid = false;
-            int result = -1;
-            while(!isValid)
-            {
-                Write("Enter the book count for {0}: ", anyBook.BookTitle);
-                isValid = int.TryParse(ReadLine(), out result);
-                if (isValid && result < 0)
-                    isValid = false;
-
-                if (!isValid)
-                    WriteLine("Input error. Only integer input is allowed and that must be non-negative!");
-            }
-            anyBook.BookCount = result;
+            string infoStr = String.Format("Enter the book count for {0}: ", anyBook.BookTitle);
+            ValidateUserInput(infoStr, out int userInput);
+            anyBook.BookCount = userInput;
         }
 
         static void PerformUserAction(Book book1, Book book2, Book book3)
         {
-            bool isValid = false;
-            int userInput = -1;
-            int[] options = new int[] { 1, 2, 3 };
-            //bool checkContinue = true;
+            string infoStr = "\n\nWhat would you like to do?\n";
+            infoStr += "Press 1 for View Order, Press 2 for Update Order, Press 3 for quitting the application: ";
 
-            //while (checkContinue)
-            //{
-                //while (!isValid || checkContinue == true)
-                while (!isValid)
-                {
-                    WriteLine("\n\nWhat would you like to do?");
-                    Write("Press 1 for View Order, Press 2 for Update Order, Press 3 for quitting the application: ");
-                    isValid = int.TryParse(ReadLine(), out userInput);
-                    if(!isValid)
-                        WriteLine("Input error. Only integer input is allowed!");
-                    
-                    if(isValid && !options.Contains(userInput))
-                    {
-                        WriteLine("Input error. Only input 1, 2 or 3 is allowed!");
-                        isValid = false;
-                    }
-                }
+            ValidateUserInput(infoStr, out int userInput, new int[] { 1, 2, 3 });
 
-                switch (userInput)
-                {
-                    case 1:
-                        //checkContinue = true;
-                        ViewOrder(book1, book2, book3);
-                        break;
-                    case 2:
-                        //checkContinue = true;
-                        UpdateOrder(book1, book2, book3);
-                        break;
-                    case 3:
-                        Clear();
-                        WriteLine("Thank you for placing an order with us. Good Bye!");
-                        //checkContinue = false;
-                        break;
-                }
-            //}
+            switch (userInput)
+            {
+                case 1:
+                    ViewOrder(book1, book2, book3);
+                    break;
+                case 2:
+                    UpdateOrder(book1, book2, book3);
+                    break;
+                case 3:
+                    Clear();
+                    WriteLine("Thank you for placing an order with us. Good Bye!");
+                    break;
+            }
         }
 
         static void ViewOrder(Book book1, Book book2, Book book3)
         {
-            string asteriskLine = new string('*', 100);
             WriteLine("\nOkay! Lets view your order!\n");
+
+            string asteriskLine = new string('*', 74);
             WriteLine(asteriskLine);
             WriteLine(book1.ToString());
             WriteLine(book2.ToString());
@@ -79,10 +77,10 @@ namespace PV_Assign1
             double totalAfterTaxAndDiscount = GetOrderTotals(book1, book2, book3, out double totalBeforeTaxAndDiscount,
                                    out double taxes, out double discountAmount);
 
-            string billCalculationStr = "*{0, 46}: {1, -50:C2}*\n";
-            billCalculationStr += "*{2, 46}: {3, -50:C2}*\n";
-            billCalculationStr += "*{4, 46}: {5, -50:C2}*\n";
-            billCalculationStr += "*{6, 46}: {7, -50:C2}*";
+            string billCalculationStr = "*{0, 35}: {1, -35:C2}*\n";
+            billCalculationStr += "*{2, 35}: {3, -35:C2}*\n";
+            billCalculationStr += "*{4, 35}: {5, -35:C2}*\n";
+            billCalculationStr += "*{6, 35}: {7, -35:C2}*";
 
             WriteLine(billCalculationStr, "Total before tax and discount", totalBeforeTaxAndDiscount,
                                           "Taxes", taxes,
@@ -106,32 +104,17 @@ namespace PV_Assign1
 
         static void UpdateOrder(Book book1, Book book2, Book book3)
         {
+            WriteLine("\nOkay! Lets update your order!\n");
+
             string infoStr = "\nPress 1 to update book counts for {0}\n";
             infoStr += "Press 2 to update book counts for {1}\n";
             infoStr += "Press 3 to update book counts for {2}\n";
             infoStr += "Press 4 to cancel Update Order\n";
             infoStr += "Enter your option: ";
 
-            bool isValid = false;
-            int userInput = -1;
-            int[] options = new int[] { 1, 2, 3, 4 };
+            infoStr = String.Format(infoStr, book1.BookTitle, book2.BookTitle, book3.BookTitle);
 
-            WriteLine("\nOkay! Lets update your order!\n");
-
-            while (!isValid)
-            {
-                Write(infoStr, book1.BookTitle, book2.BookTitle, book3.BookTitle);
-                isValid = int.TryParse(ReadLine(), out userInput);
-
-                if (!isValid)
-                    WriteLine("Input error. Only integer input is allowed!");
-
-                if (isValid && !options.Contains(userInput))
-                {
-                    WriteLine("Input error. Only input 1, 2, 3 or 4 is allowed!");
-                    isValid = false;
-                }
-            }
+            ValidateUserInput(infoStr, out int userInput, new int[] { 1, 2, 3, 4 });
 
             if (userInput == 4)
             {
@@ -139,9 +122,6 @@ namespace PV_Assign1
                 return;
             }
 
-            infoStr = "Enter the new counts for {0}: ";
-            isValid = false;
-            int updatedCount = 0;
             Book selectedBook = null;
 
             switch (userInput)
@@ -157,17 +137,9 @@ namespace PV_Assign1
                     break;
             }
 
-            while (!isValid)
-            {
-                Write(infoStr, selectedBook.BookTitle);
-                isValid = int.TryParse(ReadLine(), out updatedCount);
+            infoStr = String.Format("Enter the new counts for {0}: ", selectedBook.BookTitle);
 
-                if (isValid && updatedCount < 0)
-                    isValid = false;
-
-                if (!isValid)
-                    WriteLine("Input error. Only integer input is allowed and that must be non-negative!");
-            }
+            ValidateUserInput(infoStr, out int updatedCount);
             selectedBook.BookCount = updatedCount;
 
             WriteLine("Great! Book Counts for {0} has been updated to {1}", selectedBook.BookTitle, selectedBook.BookCount);
@@ -182,15 +154,17 @@ namespace PV_Assign1
                 //new Book("title A", 17.3),
                 //new Book("title B", 25.8),
                 //new Book("title C", 39.4)
-                new Book("title A", 9.99),
-                new Book("title B", 14.99),
-                new Book("title C", 17.99)
+                new Book("Blade in the Ice", 9.99),
+                new Book("Clue of the Cold Pendant", 14.99),
+                new Book("The Oaken Dagger", 17.99)
             };
 
-            WriteLine("Welcome to wholesale book ordering system!");
-            WriteLine("You can place orders for three different book counts!");
+            string welcomeStr = "Welcome to wholesale book ordering system!\n";
+            welcomeStr += "You can place orders for three different book counts!\n";
+            welcomeStr += "\nThe books we have in stock are...";
 
-            WriteLine("\nThe books we have in stock are...");
+            WriteLine(welcomeStr);
+
             foreach (var book in bookList)
             {
                 WriteLine("{0} with unit price {1:C2}", book.BookTitle, book.UnitPrice);

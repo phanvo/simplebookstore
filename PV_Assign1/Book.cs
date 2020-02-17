@@ -25,11 +25,11 @@ namespace PV_Assign1
 
         public override string ToString()
         {
-            string resultStr = "*{0, 46}: {1, -50}*\n";
-            resultStr += "*{2, 46}: {3, -50:C2}*\n";
-            resultStr += "*{4, 46}: {5, -50}*\n";
-            resultStr += "*{6, 46}: {7, -50:C2}*\n";
-            resultStr += $"*{new string(' ', 98)}*";
+            string resultStr = "*{0, 35}: {1, -35}*\n";
+            resultStr += "*{2, 35}: {3, -35:C2}*\n";
+            resultStr += "*{4, 35}: {5, -35}*\n";
+            resultStr += "*{6, 35}: {7, -35:C2}*\n";
+            resultStr += $"*{new string(' ', 72)}*";
             return String.Format(resultStr, "Title", BookTitle,
                                             "Unit Price", UnitPrice,
                                             "Book Count", BookCount,
