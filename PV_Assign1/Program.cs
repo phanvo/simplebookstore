@@ -171,13 +171,6 @@ namespace PV_Assign1
                     break;
             }
 
-            //// format string with book title
-            //infoStr = String.Format("Enter the new counts for {0}: ", selectedBook.BookTitle);
-
-            //// handle user input for book count
-            //ValidateUserInput(infoStr, out int updatedCount);
-            //selectedBook.BookCount = updatedCount;
-
             // call LoadBookCount to process updating book count for selected book, add flag true to indicate updating
             LoadBookCount(selectedBook, true);
 
@@ -189,33 +182,36 @@ namespace PV_Assign1
 
         static void Main(string[] args)
         {
+            // create an array to initialize 3 books
             Book[] bookList = new Book[] 
             {
-                //new Book("title A", 17.3),
-                //new Book("title B", 25.8),
-                //new Book("title C", 39.4)
-                new Book("Blade in the Ice", 9.99),
-                new Book("Clue of the Cold Pendant", 14.99),
-                new Book("The Oaken Dagger", 17.99)
+                new Book("Blade in the Ice", 17.3),
+                new Book("Clue of the Cold Pendant", 25.8),
+                new Book("The Oaken Dagger", 39.4)
             };
 
+            // concatenate strings to display welcome and info message
             string welcomeStr = "Welcome to wholesale book ordering system!\n";
             welcomeStr += "You can place orders for three different book counts!\n";
             welcomeStr += "\nThe books we have in stock are...";
 
             WriteLine(welcomeStr);
 
+            // iterate through the elements of bookList array to display each book title and unit price
             foreach (var book in bookList)
             {
                 WriteLine("{0} with unit price {1:C2}", book.BookTitle, book.UnitPrice);
             }
 
             WriteLine("\n\nLet us begin by entering the counts for each of these books");
+
+            // iterate through the elements of bookList array to initialize book counts from user input
             foreach (var book in bookList)
             {
                 LoadBookCount(book);
             }
 
+            // call PerformUserAction to allow user input in main menu
             PerformUserAction(bookList[0], bookList[1], bookList[2]);
         }
     }
